@@ -6,7 +6,7 @@ var app = express();
 app.use(morgan('combined'));
 
 var articles ={
- articleOne :{
+ 'article-One' :{
     title :'Article-One Shree',
     heading:'Article-One',
     date:'Feb 5 2017',
@@ -20,14 +20,14 @@ var articles ={
                 My first  content in my webapp.My first content in my webapp.My first content in my webapp.My first content in my webapp.My first content in my webapp.helloooooo
                 </p> `
 },
- articleTwo : { title :'Article-Two Shree',
+ 'article-Two' : { title :'Article-Two Shree',
     heading:'Article-Two',
     date:'Feb 6 2017',
     content :`  <p>
             My Second content in my webapp.
             </p>`,
  },
- articleThree : { title :'Article-Three Shree',
+ 'article-Three' : { title :'Article-Three Shree',
     heading:'Article-Three',
     date:'Feb 7 2017',
     content:` <p>
@@ -78,8 +78,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-  res.send(createTemplate(articleOne));
+app.get('/:articleName',function(req,res){
+    //articleName == article-One
+    //articles[articleName] == {} content object for articleOne
+    var articleName =req.params.articleName,
+  res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-two',function(req,res){
