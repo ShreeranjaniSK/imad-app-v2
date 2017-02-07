@@ -1,17 +1,28 @@
 console.log('Loaded!');
 
-//change the data in the main text div
-
-var element = document.getElementById('main-text');
-element.innerHTML = 'New Value Entered Image Moves';
-//Move the image
-var img= document.getElementById('madi');
-var marginLeft = 0;
-function moveRight(){
-    marginLeft = marginLeft + 2;
-    img.style.marginLeft=marginLeft + 'px';
-}
-img.onclick = function(){
-    var interval = setInterval(moveRight,50);
-//    img.style.marginLeft = '100px';
+//counter code
+var button = document.getElementById('counter');
+var counter = 0;
+button.onclick=function()
+{
+  //Create a request the counter endpoint
+  var request = new XMLHTTPRequest();
+  
+  //Capture the response and store in variable
+  request.onreadystatechange = function()
+  {
+      if (request.readystate === XMLHTTPRequest.DONE){
+          //take action
+          if(request.status === 200){
+              var counter = request.responseText;
+              counter = counter + 1;
+              var span = document.getElementById('count');
+              span.innerHTML = counter.toString();
+          }
+      }
+      //not done yet
+  };
+ //Make Request
+ request.open('GET','http://http://shreeranjanisk.imad.hasura-app.io/counter');
+ request.send(null);
 };
