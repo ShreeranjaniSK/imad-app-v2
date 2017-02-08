@@ -22,6 +22,6 @@ button.onclick=function()
       //not done yet
   };
  //Make Request
- request.open('GET','http://http://shreeranjanisk.imad.hasura-app.io/counter',true);
+ request.open('GET','http://shreeranjanisk.imad.hasura-app.io/counter',true);
  request.send(null);
 };
