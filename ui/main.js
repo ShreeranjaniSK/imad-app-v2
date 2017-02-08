@@ -5,16 +5,16 @@ var button = document.getElementById('counter');
 button.onclick=function()
 {
   //Create a request the counter endpoint
-  var request = new XMLHTTPRequest();
+  var request = new XMLHttpRequest();
   
   //Capture the response and store in variable
   request.onreadystatechange = function()
   {
-      if (request.readystate === XMLHTTPRequest.DONE){
+      if (request.readystate === XMLHttpRequest.DONE){
           //take action
           if(request.status === 200){
               var counter = request.responseText;
-              counter = counter + 1;
+             // counter = counter + 1;
               var span = document.getElementById('count');
               span.innerHTML = counter.toString();
           }
@@ -22,6 +22,6 @@ button.onclick=function()
       //not done yet
   };
  //Make Request
- request.open('GET','http://http://shreeranjanisk.imad.hasura-app.io/counter');
+ request.open('GET','http://http://shreeranjanisk.imad.hasura-app.io/counter',true);
  request.send(null);
 };
