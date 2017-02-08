@@ -25,3 +25,19 @@ button.onclick=function()
  request.open('GET','http://shreeranjanisk.imad.hasura-app.io/counter',true);
  request.send(null);
 };
+
+//Submit Name
+var nameInput = documnet.getElementById('name');
+var name = nameInput.value;
+var submit = document.getElementById('submit-btn');
+submit.onclick=function(){
+    //Make a request to the server and send the name
+    //Capture list of names and render as list
+var names= ['name1','name2','name3','name4'];
+var list = '';
+for (var i=0;i<names.length;i++){
+    list = '<li>'+names[i]+'</li>';
+}
+ var ul = document.getElementById('namelist');
+ ul.innerHtml = list;
+};
