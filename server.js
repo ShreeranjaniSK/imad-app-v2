@@ -93,7 +93,7 @@ app.get('/:articleName',function(req,res){
   res.send(createTemplate(articles[articleName]));
 });
 
-var names[];
+var names = [];
 app.get('/submit-name/:name',function(req,res){
 //Get name from  the request
 var name = req.parama.name;
