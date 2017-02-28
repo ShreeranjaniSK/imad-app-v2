@@ -8,7 +8,8 @@ var config ={
   database: 'shreeranjanisk',
   host : 'db.imad.hasura-app.io',
   port: '5432',
-  password : process.env.DB_PASSWORD
+ // password : process.env.DB_PASSWORD
+  password : 'db-shreeranjanisk-40406'
 };
 
 var app = express();
