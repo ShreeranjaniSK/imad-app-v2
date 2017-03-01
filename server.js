@@ -95,7 +95,7 @@ function hash(input,salt){
    return hashed.toString('hex');
 }
 
-app.get('/hash/input', function(req, res){
+app.get('/hash/:input', function(req, res){
    //How do we create a hashtag
    var hashedString = hash(req.params.input,'this-is-a random-data');
    res.send(hashedString);
