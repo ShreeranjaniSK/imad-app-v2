@@ -42,8 +42,15 @@ submit.onclick=function(){
           if(request.status === 200){
               console.log('User loggedin');
               alert('Logged in successfully');
-              
-          /*  var names= request.responseText;
+            }else if(request.status === 403){
+                alert('Username/Password incorrect');
+            }else if(request.status === 500){
+                alert('Something went wrong on the server');
+            }
+          }
+      };
+      
+      /*  var names= request.responseText;
             names=JSON.parse(names);
             var list = '';
             for (var i=0;i<names.length;i++){
@@ -51,9 +58,7 @@ submit.onclick=function(){
             }
              var ul = document.getElementById('namelist');
              ul.innerHTML = list;*/
-            }
-          }
-      };
+
       //not done yet
  
  //Make Request
@@ -67,5 +72,6 @@ submit.onclick=function(){
     console.log(username);
     console.log(password);
     request.open('POST','http://shreeranjanisk.imad.hasura-app.io/login',true);
+    request.setRequestHeader('Content-Type','/applictaion/json');
     request.send(JSON.stringify({username:username , password:password}));
 };
