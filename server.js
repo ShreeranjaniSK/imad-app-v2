@@ -18,7 +18,10 @@ var app = express();
 app.use(morgan('combined'));
 //JSON content goes into req.body using bodyParser in express framework
 app.use(bodyParser.json());
-
+app.use(session({
+    secret :'someRandomsecretvalue',
+    cookie :{maxAge :1000 * 60 * 60 * 24 * 30}
+}));
 
 var articles ={
  'article-one' :{
@@ -147,6 +150,12 @@ app.post('/login',function(req,res){
             var hashedPassword = hash(password,salt); //creating hashedPassword based on the password submitted and original salt value;
             if(hashedPassword === dbString)
             {
+        //Set Seession
+            req.session.auth = {userid :result.rows[0].id};
+            //Set cookie with session id
+            //internally on the server side it maps the session id to an object
+            //{auth :{userid}}
+            //
             res.send('Credentials are Correct');
             }
             else{
@@ -156,6 +165,13 @@ app.post('/login',function(req,res){
        }  
        
    }); 
+});
+app.get('/check-login',function(req,res){
+   if (req.session && req.session.auth && req.session.auth.userId){
+       res.send('You are logged in as ' + req.session.auth.userId.toString());
+   } else {
+       res.send('You are not lgged in');
+   }
 });
 app.get('/test-db',function(req,res){
   //make a select request
